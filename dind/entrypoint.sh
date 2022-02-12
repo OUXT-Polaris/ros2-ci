@@ -50,4 +50,5 @@ docker run \
   --env PRE_TEST="${PRE_TEST}" \
   --env POST_TEST="${POST_TEST}" \
   --env REPOS_FILEPATH="${REPOS_FILEPATH}" \
+  --env ROS2_DISTRO="${ROS2_DISTRO}" \
   --rm ros2-ci:latest || exit $?
