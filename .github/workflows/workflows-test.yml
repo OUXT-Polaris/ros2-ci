@@ -7,6 +7,10 @@ on:
 jobs:
   workflows-test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        rosdistro : [foxy,galactic]
     steps:
       - name: Checking out
         uses: actions/checkout@v2.3.4
@@ -15,24 +19,4 @@ jobs:
       - name: Testing with different distribution
         uses: ./
         with:
-          ros2-distro: rolling
-      - name: Testing with commands
-        uses: ./
-        with:
-          pre-install: FOO=fofofo
-          post-install: test "${FOO}" = 'fofofo'
-          pre-build: curl --version && wget --version
-          post-build: cat ./LICENSE && cat ./README.md
-          pre-test: GOO=gogogo
-          post-test: test "${FOO}${GOO}" = 'fofofogogogo'
-      - name: Testing with APT and pip install
-        uses: ./
-        with:
-          apt-packages: neofetch libopencv-dev
-          pip-packages: numpy matplotlib
-          post-install: neofetch && opencv_version && python3 -c 'import numpy; import matplotlib'
-      - name: Testing with including external repositories
-        uses: ./
-        with:
-          ros2-distro: foxy
-          external-repos: https://github.com/ros2/example_interfaces#foxy ros2/examples#foxy
+          ros2-distro: ${{ matrix.rosdistro }}
