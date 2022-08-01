@@ -148,7 +148,7 @@ echo ''
 echo '======== Testing the workspace ========'
 echo ''
 
-cd /ws && colcon test \
+cd /ws && colcon test --packages-up-to $PACKAGES \
   --event-handlers console_cohesion+ \
   --pytest-with-coverage \
   --return-code-on-test-failure || exit $?
