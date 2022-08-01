@@ -97,6 +97,7 @@ else
   mkdir /ws/src
   cd /ws/src
   export PACKAGES=`colcon list -t -n`
+  echo $PACKAGES
   cd /ws && vcs import /ws/src < /ws/src/packages/"$REPOS_FILEPATH"
 fi
 
