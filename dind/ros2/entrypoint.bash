@@ -108,7 +108,7 @@ echo ''
 rm -rf /etc/ros/rosdep/sources.list.d/20-default.list
 rosdep init
 rosdep update
-rosdep install -iry --rosdistro "$ROS2_DISTRO" --from-paths /ws/src/
+rosdep install -iry --rosdistro "$ROS2_DISTRO" --include-eol-distros --from-paths /ws/src/
 
 echo ''
 echo '======== Listing packages in the workspace ========'
